@@ -49,4 +49,27 @@ SELECT ticker, MIN(day), MAX(day)
 FROM Prices
 WHERE ticker = <Ticker>;
 
--- Q2
+-- Q3
+SELECT AVG(close), MAX(close), MIN(close), AVG(volume)
+FROM Prices,
+	(SELECT DISTINCT MAX(YEAR(day)) AS YEAR FROM Prices) AS MAXYEAR
+WHERE ticker = "LUV" AND YEAR(day) = MAXYEAR.YEAR
+GROUP BY MONTH(day);
+
+-- Q4
+SELECT *
+FROM (SELECT MIN(day) AS Day
+	 FROM Prices
+	 WHERE ticker = "LUV"
+	 GROUP BY YEAR(DAY), MONTH(DAY)
+
+	 UNION
+
+	 SELECT MAX(day)
+	 FROM Prices
+	 WHERE ticker = "LUV"
+	 GROUP BY YEAR(day), MONTH(day)) D,
+	 Prices
+WHERE Prices.day = D.day AND ticker = "LUV"
+ORDER BY Prices.Day
+;
