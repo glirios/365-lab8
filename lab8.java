@@ -96,14 +96,14 @@ public class lab8 {
 		try
 		{
 			Statement s1 = conn.createStatement();
-			query = "SELECT SUM(Volume) FROM Prices WHERE Day = "
+			query = "SELECT COUNT(*) FROM Prices WHERE Day = "
 					+ "(SELECT MIN(Day) FROM Prices WHERE Year(Day) = 2016 "
 					+ "AND Month(Day) = 1)";
 			ResultSet result = s1.executeQuery(query);
 			boolean f = result.next();
 			while (f)
 			{
-				long total = result.getLong(1);
+				int total = result.getInt(1);
 				System.out.println("Total number of securities traded at the"
 						+ " start of 2016");
 				System.out.println(total);
@@ -120,14 +120,14 @@ public class lab8 {
 		try
 		{
 			Statement s2 = conn.createStatement();
-			query = "SELECT SUM(Volume) FROM Prices WHERE Day = "
+			query = "SELECT COUNT(*) FROM Prices WHERE Day = "
 					+ "(SELECT MAX(Day) FROM Prices WHERE Year(Day) = 2016 "
 					+ "AND Month(Day) = 12)";
 			ResultSet result = s2.executeQuery(query);
 			boolean f = result.next();
 			while (f)
 			{
-				long total = result.getLong(1);
+				int total = result.getInt(1);
 				System.out.println("Total number of securities traded at the "
 						+ "end of 2016");
 				System.out.println(total);
@@ -145,11 +145,11 @@ public class lab8 {
 		{
 			Statement s3 = conn.createStatement();
 			query = "SELECT COUNT(*) FROM "
-					+ "(SELECT * FROM Prices WHERE Day = "
-					+ "(SELECT MAX(Day) FROM Prices WHERE Year(Day) = 2016"
+					+ "(SELECT * FROM AdjustedPrices WHERE Day = "
+					+ "(SELECT MAX(Day) FROM AdjustedPrices WHERE Year(Day) = 2016"
 					+ " AND Month(Day) = 12) GROUP BY Ticker) x, "
-					+ "(SELECT * FROM Prices WHERE Day = "
-					+ "(SELECT MAX(Day) FROM Prices WHERE Year(Day) = 2015"
+					+ "(SELECT * FROM AdjustedPrices WHERE Day = "
+					+ "(SELECT MAX(Day) FROM AdjustedPrices WHERE Year(Day) = 2015"
 					+ " AND Month(Day) = 12) GROUP BY Ticker) x1 "
 					+ "WHERE x.Ticker = x1.Ticker AND x.Close > x1.Close";
 			ResultSet result = s3.executeQuery(query);
@@ -174,11 +174,11 @@ public class lab8 {
 		{
 			Statement s4 = conn.createStatement();
 			query = "SELECT COUNT(*) FROM "
-					+ "(SELECT * FROM Prices WHERE Day = "
-					+ "(SELECT MAX(Day) FROM Prices WHERE Year(Day) = 2016"
+					+ "(SELECT * FROM AdjustedPrices WHERE Day = "
+					+ "(SELECT MAX(Day) FROM AdjustedPrices WHERE Year(Day) = 2016"
 					+ " AND Month(Day) = 12) GROUP BY Ticker) x, "
-					+ "(SELECT * FROM Prices WHERE Day = "
-					+ "(SELECT MAX(Day) FROM Prices WHERE Year(Day) = 2015"
+					+ "(SELECT * FROM AdjustedPrices WHERE Day = "
+					+ "(SELECT MAX(Day) FROM AdjustedPrices WHERE Year(Day) = 2015"
 					+ " AND Month(Day) = 12) GROUP BY Ticker) x1 "
 					+ "WHERE x.Ticker = x1.Ticker AND x.Close < x1.Close";
 			ResultSet result = s4.executeQuery(query);
