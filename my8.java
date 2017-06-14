@@ -3,7 +3,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class lab8 {
+public class my8 {
 
    static Connection conn = null;
    static String filename = "general.html";
@@ -473,7 +473,7 @@ public class lab8 {
    public static void individualAnalysis(String ticker)
    {
    		String query = "";
-   		
+
    		// Query 1
 		try
 		{
