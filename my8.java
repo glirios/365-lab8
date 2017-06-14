@@ -80,7 +80,7 @@ public class my8 {
 
       startTemplate();
 		generalAnalysis();
-
+		individualAnalysis(tickerOne);
       endTemplate();
 		/*
 		try
