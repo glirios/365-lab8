@@ -25,7 +25,7 @@ public class lab8 {
 
 		// Giovanni's Personal Tickers
 		String tickerThree = "DG";
-		String tickerFour = "RSG"
+		String tickerFour = "RSG";
 
 		try
 		{
