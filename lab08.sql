@@ -44,16 +44,46 @@ LIMIT 10
 
 -- Individual Queries
 -- Q1
+-- Kyle- LUV LNC Gio- RSG DG
+SELECT ticker, MIN(day), MAX(day)
+FROM Prices
+WHERE ticker = "LUV";
 
 SELECT ticker, MIN(day), MAX(day)
 FROM Prices
-WHERE ticker = <Ticker>;
+WHERE ticker = "LNC";
+
+SELECT ticker, MIN(day), MAX(day)
+FROM Prices
+WHERE ticker = "RSG";
+
+SELECT ticker, MIN(day), MAX(day)
+FROM Prices
+WHERE ticker = "DG";
 
 -- Q3
-SELECT AVG(close), MAX(close), MIN(close), AVG(volume)
+SELECT MONTH(day) AS Month ,AVG(close), MAX(close), MIN(close), AVG(volume)
 FROM Prices,
 	(SELECT DISTINCT MAX(YEAR(day)) AS YEAR FROM Prices) AS MAXYEAR
 WHERE ticker = "LUV" AND YEAR(day) = MAXYEAR.YEAR
+GROUP BY MONTH(day);
+
+SELECT MONTH(day) AS Month ,AVG(close), MAX(close), MIN(close), AVG(volume)
+FROM Prices,
+	(SELECT DISTINCT MAX(YEAR(day)) AS YEAR FROM Prices) AS MAXYEAR
+WHERE ticker = "LNC" AND YEAR(day) = MAXYEAR.YEAR
+GROUP BY MONTH(day);
+
+SELECT MONTH(day) AS Month ,AVG(close), MAX(close), MIN(close), AVG(volume)
+FROM Prices,
+	(SELECT DISTINCT MAX(YEAR(day)) AS YEAR FROM Prices) AS MAXYEAR
+WHERE ticker = "RSG" AND YEAR(day) = MAXYEAR.YEAR
+GROUP BY MONTH(day);
+
+SELECT MONTH(day) AS Month ,AVG(close), MAX(close), MIN(close), AVG(volume)
+FROM Prices,
+	(SELECT DISTINCT MAX(YEAR(day)) AS YEAR FROM Prices) AS MAXYEAR
+WHERE ticker = "DG" AND YEAR(day) = MAXYEAR.YEAR
 GROUP BY MONTH(day);
 
 -- Q4

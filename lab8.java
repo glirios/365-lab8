@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class lab8 {
 
-	static Connection conn = null;
+   static Connection conn = null;
    static String filename = "general.html";
    static String ticker = "General";
    static FileWriter fw = null;
@@ -18,6 +18,14 @@ public class lab8 {
 		String password = "PASSWORD";
 		String url = "jdbc:mysql://cslvm74.csc.calpoly.edu/nyse";
 		String query = "";
+
+		// Kyle's Personal Tickers
+		String tickerOne = "LUV";
+		String tickerTwo = "LNC";
+
+		// Giovanni's Personal Tickers
+		String tickerThree = "DG";
+		String tickerFour = "RSG"
 
 		try
 		{
@@ -72,6 +80,7 @@ public class lab8 {
 
       startTemplate();
 		generalAnalysis();
+
       endTemplate();
 		/*
 		try
@@ -100,6 +109,8 @@ public class lab8 {
 	public static void generalAnalysis()
 	{
 		String query = "";
+
+		// Query 1 Part 1
 		try
 		{
 			Statement s1 = conn.createStatement();
@@ -127,6 +138,7 @@ public class lab8 {
 			System.out.println(ex);
 		}
 
+		// Query 1 Part 2
 		try
 		{
 			Statement s2 = conn.createStatement();
@@ -154,6 +166,7 @@ public class lab8 {
 			System.out.println(ex);
 		}
 
+		// Query 1 Part 3
 		try
 		{
 			Statement s3 = conn.createStatement();
@@ -187,6 +200,7 @@ public class lab8 {
 			System.out.println(ex);
 		}
 
+		// Query 1 Part 4
 		try
 		{
 			Statement s4 = conn.createStatement();
@@ -220,6 +234,8 @@ public class lab8 {
 			System.out.println(ex);
 		}
 
+
+		// Query 2
 		try
 		{
 			Statement s5 = conn.createStatement();
@@ -245,6 +261,7 @@ public class lab8 {
 			System.out.println(ex);
 		}
 
+		// Query 3
 		try
 		{
 			Statement s6 = conn.createStatement();
@@ -335,6 +352,7 @@ public class lab8 {
 			System.out.println(ex);
 		}
 
+		// Query 4
 		try
 		{
 			Statement s9 = conn.createStatement();
@@ -367,6 +385,7 @@ public class lab8 {
 			System.out.println(ex);
 		}
 
+		// Query 5
 		try
 		{
 			Statement s10 = conn.createStatement();
@@ -450,6 +469,37 @@ public class lab8 {
 
 	}
 
+
+   public static void individualAnalysis(String ticker)
+   {
+   		// Query 1
+		try
+		{
+			Statement s1 = conn.createStatement();
+			query = "SELECT ticker, MIN(day), MAX(day)"
+					+ "FROM Prices"
+					+ "WHERE ticker = " + ticker;
+			ResultSet result = s1.executeQuery(query);
+			boolean f = result.next();
+         startTable();
+         bw.write("<caption>Date Ranges for " + ticker + " </caption>\n<tr>\n<th>Total</th>\n</tr>\n");
+			while (f)
+			{
+				int total = result.getInt(1);
+				bw.write("<tr>\n<td>" + total + "</td>\n</tr>\n");
+				//System.out.println(total);
+            f = result.next();
+			}
+         endTable();
+		}
+		catch (Exception ex)
+		{
+			System.out.println("Could not obtain the Individual Stock Market "
+					+ "Analysis #1 for " + ticker);
+			System.out.println(ex);
+		}
+    
+   }
 
    public static void startTemplate()
    {
