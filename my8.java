@@ -472,6 +472,8 @@ public class lab8 {
 
    public static void individualAnalysis(String ticker)
    {
+   		String query = "";
+   		
    		// Query 1
 		try
 		{
