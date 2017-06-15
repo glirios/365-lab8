@@ -69,6 +69,9 @@ x.Ticker = x1.Ticker) y;
 
 // THIS IS INDIV QUERY 4
 // Needs to loop through the top SELECT Statement and set year(Day) = that year being looped through and also ticker = (ticker assigned)
+
+// Calculated the relative price increase for each month from the open value of first day of month to close value of last day of month and took the month with the highest.
+
 // query to loop through
 SELECT DISTINCT Year(Day) FROM Prices WHERE Ticker = "luv";
 
