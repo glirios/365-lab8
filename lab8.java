@@ -518,11 +518,11 @@ public class lab8 {
       try
       {
          bw.write("<!DOCTYPE html>\n");
-         bw.write("<html>\n");
+         bw.write("<html>\n\n");
 
          bw.write("<head>\n\t<style>\n\t\ttable, \n\t\tth, \n\t\ttd {\n\t\t\tborder: 1px solid black;" +
-            "\n\t\t\tborder-collapse: collapse;\n\t\t}\n\t\tth, \n\t\ttd {\n\t\t\tpadding: 5px;\n\t\t\t" +
-            "text-align: center;\n\t\t}\n\t\t</style>\n\t\t<center>Stock Analysis for " +
+            "\n\t\t\tborder-collapse: collapse;\n\t\t}\n\n\t\tth, \n\t\ttd {\n\t\t\tpadding: 5px;\n\t\t\t" +
+            "text-align: center;\n\t\t}\n\n\t</style>\n\n\t<center>Stock Analysis for " +
             ticker + "</center>\n</head>\n\n");
          bw.write("<body>\n\n");
       }
