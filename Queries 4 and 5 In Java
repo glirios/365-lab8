@@ -1,0 +1,111 @@
+   public static void indivAnalysis()
+   {
+      String query = "";
+      try
+		{
+			Statement s1 = conn.createStatement();
+			query = "SELECT DISTINCT Year(Day) FROM Prices WHERE Ticker = '" +
+          ticker + "' ORDER BY Year(Day)";
+			ResultSet result = s1.executeQuery(query);
+			boolean f = result.next();
+         startTable();
+         bw.write("<caption>Month of best performance for each year "
+          + "for ticker " + ticker + ".\n Calculated the relative price "
+          + "increase for each month from the open value of first day "
+          + "of month to close value of last day of month"
+          + ".</caption>\n<tr>\n"
+            + "<th>Year</th><th>Month</th></tr>\n");
+			while (f)
+			{
+				int year = result.getInt(1);
+            bw.write("<tr>\n<td>" + year + "</td>\n");
+            try
+            {
+               Statement s2 = conn.createStatement();
+               query = "SELECT MONTHNAME(p.Day) AS Month "
+                + "FROM (SELECT Day, Open FROM Prices WHERE Year(Day) = "+ year
+                + " AND Ticker = '" + ticker + "') p, (SELECT Day, Close FROM "
+                + "Prices WHERE Year(Day) = " + year + " AND Ticker = '" + ticker
+                + "') p1 WHERE p.Day IN (SELECT MIN(Day) FROM Prices WHERE "
+                + "Ticker = '" + ticker + "' AND "
+                + "Year(Day) = " + year + " GROUP BY Month(Day)) AND "
+                + "p1.Day IN (SELECT MAX(Day) FROM Prices WHERE Ticker = '" +
+                ticker + "' AND Year(Day) = " + year + " GROUP BY Month(Day)) "
+                + "AND Month(p.Day) = Month(p1.Day) GROUP BY Month(p.Day) "
+                + "ORDER BY ((p1.Close - p.Open) / (p.Open)) DESC LIMIT 1";
+               ResultSet result1 = s2.executeQuery(query);
+               boolean f1 = result1.next();
+               while (f1)
+               {
+                  String month = result1.getString(1);
+                  bw.write("<td>" + month + "</td>\n");
+                  f1 = result1.next();
+               }
+               bw.write("</tr>\n");
+            }
+            catch (Exception ex)
+            {
+               System.out.println("Could not obtain the Individual Stock Market "
+                     + "Analysis #4 for year " + year);
+               System.out.println(ex);
+            }
+				f = result.next();
+			}
+         endTable();
+		}
+		catch (Exception ex)
+		{
+			System.out.println("Could not obtain the General Stock Market "
+					+ "Analysis #4");
+			System.out.println(ex);
+		}
+
+      try
+      {
+         String dates[] = new String[]{"'2015-1-1'", "'2015-6-1'", "'2015-10-1'",
+          "'2016-1-1'", "'2016-6-1'", "'2016-10-1'"};
+         Statement s3 = conn.createStatement();
+         startTable();
+         bw.write("<caption>Position analysis on stock for following dates"
+          + "</caption>\n<tr>\n<th>Date</th><th>Position</th></tr>\n");
+         for (String s : dates)
+         {
+            query = "SELECT (CASE WHEN p.Volume > p1.Volume AND "
+             + "(p1.Close / p.Open) >= 1.01 THEN 'Buy' "
+             + "WHEN p1.Close > p.Open AND (p1.Close / p.Open) < 1.01 AND "
+             + "(p1.Close / p.Open) >= .95 THEN 'Hold' "
+             + "WHEN p.Open > p1.Close AND (p1.Close / p.Open) < .95 "
+             + "THEN 'Sell' ELSE 'Hold' END) AS Decision, p.Volume, "
+             + "p1.Volume, p.Open, p1.Close FROM (SELECT Day, Volume, Open "
+             + "FROM Prices WHERE Ticker = '" + ticker + "' AND Year(Day) + 1 "
+             + "= Year(" + s + ")) p, (SELECT Day, Volume, Close FROM Prices "
+             + "WHERE Ticker = '" + ticker + "' AND Year(Day) + 1 = Year( "
+             + s + ")) p1 WHERE p.Day = (SELECT MIN(Day) FROM Prices "
+             + "WHERE Year(Day) + 1 = Year(" + s + ") AND 13 - MONTH(" +
+             s + ") = MONTH(Day) AND Ticker = '" + ticker + "') AND "
+             + "p1.Day = (SELECT MAX(Day) FROM Prices WHERE Year(Day) + 1 = "
+             + "Year(" + s + ") AND 13 - MONTH(" + s + ") = MONTH(Day) AND "
+             + "Ticker = '" + ticker + "')";
+            ResultSet result = s3.executeQuery(query);
+            boolean f = result.next();
+            if (f)
+            {
+               while (f)
+               {
+                  String position = result.getString(1);
+                  bw.write("<tr>\n<td>" + s + "</td>\n<td>" + position
+                   + "</td></tr>");
+                  f = result.next();
+               }
+            }
+         }
+         endTable();
+      }
+      catch (Exception ex)
+      {
+         System.out.println("Could not obtain the Individual Stock Market "
+               + "Analysis #5");
+         System.out.println(ex);
+      }
+
+   }
