@@ -176,7 +176,7 @@
             else
             {
                bw.write("<tr>\n<td>" + s + "</td>\n<td>" +
-                "No Data Available To Analyze Future");
+                "No Data Available To Analyze Future</td>\n</tr>\n");
             }
          }
          endTable();
