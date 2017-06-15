@@ -92,3 +92,25 @@ Month(p.Day) = Month(p1.Day)
 GROUP BY Month(p.Day)
 ORDER BY ((p1.Close - p.Open) / (p.Open)) DESC
 LIMIT 1;
+
+
+
+// Indiv Query 5
+// loop through the dates (have them as an array of strings)
+// Check for nulls
+// need to set the dates to the string array values, ticker to ticker
+SELECT (CASE WHEN p.Volume > p1.Volume AND (p1.Close / p.Open) >= 1.01 THEN "Buy"
+WHEN p1.Close > p.Open AND (p1.Close / p.Open) < 1.01 AND (p1.Close / p.Open) >= .95 THEN "Hold"
+WHEN p.Open > p1.Close AND (p1.Close / p.Open) < .95 THEN "Sell" 
+ELSE "Hold" END) AS Decision, p.Volume, p1.Volume, p.Open, p1.Close
+FROM (SELECT Day, Volume, Open FROM Prices WHERE Ticker = "lnc" AND Year(Day) + 1 = Year('2015-10-1')) p, (SELECT Day, Volume, Close FROM Prices WHERE Ticker = "lnc" AND Year(Day) + 1 = Year('2015-10-1')) p1
+WHERE p.Day = (SELECT MIN(Day)
+FROM Prices
+WHERE Year(Day) + 1 = Year('2015-10-1') AND
+13 - MONTH('2015-10-1') = MONTH(Day) AND
+Ticker = 'lnc') AND
+p1.Day = (SELECT MAX(Day)
+FROM Prices
+WHERE Year(Day) + 1 = Year('2015-10-1') AND
+13 - MONTH('2015-10-1') = MONTH(Day) AND
+Ticker = 'lnc');
