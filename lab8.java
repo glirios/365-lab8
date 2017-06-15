@@ -473,7 +473,7 @@ public class lab8 {
    public static void individualAnalysis(String ticker)
    {
    		// Query 1
-   		string query = ""
+   		string query = "";
 		try
 		{
 			Statement s1 = conn.createStatement();
