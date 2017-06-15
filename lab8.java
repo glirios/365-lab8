@@ -473,6 +473,7 @@ public class lab8 {
    public static void individualAnalysis(String ticker)
    {
    		// Query 1
+   		string query = ""
 		try
 		{
 			Statement s1 = conn.createStatement();
@@ -485,7 +486,7 @@ public class lab8 {
          bw.write("<caption>Date Ranges for " + ticker + " </caption>\n<tr>\n<th>Total</th>\n</tr>\n");
 			while (f)
 			{
-				int total = result.getInt(1);
+				int total = result.getString(1);
 				bw.write("<tr>\n<td>" + total + "</td>\n</tr>\n");
 				//System.out.println(total);
             f = result.next();
