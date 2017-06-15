@@ -82,15 +82,21 @@
              + "WHEN p.Open > p1.Close AND (p1.Close / p.Open) < .95 "
              + "THEN 'Sell' ELSE 'Hold' END) AS Decision, p.Volume, "
              + "p1.Volume, p.Open, p1.Close FROM (SELECT Day, Volume, Open "
-             + "FROM Prices WHERE Ticker = '" + ticker + "' AND Year(Day) + 1 "
-             + "= Year(" + s + ")) p, (SELECT Day, Volume, Close FROM Prices "
-             + "WHERE Ticker = '" + ticker + "' AND Year(Day) + 1 = Year( "
-             + s + ")) p1 WHERE p.Day = (SELECT MIN(Day) FROM Prices "
-             + "WHERE Year(Day) + 1 = Year(" + s + ") AND 13 - MONTH(" +
-             s + ") = MONTH(Day) AND Ticker = '" + ticker + "') AND "
-             + "p1.Day = (SELECT MAX(Day) FROM Prices WHERE Year(Day) + 1 = "
-             + "Year(" + s + ") AND 13 - MONTH(" + s + ") = MONTH(Day) AND "
-             + "Ticker = '" + ticker + "')";
+             + "FROM Prices WHERE Ticker = '" + ticker + "' AND Year(Day) = "
+             + "(CASE WHEN MONTH(" + s + ") > 3 THEN Year(" + s + ") ELSE "
+             + "Year(" + s + ") - 1 END)) p, (SELECT Day, Volume, Close FROM "
+             + " Prices WHERE Ticker = '" + ticker + "' AND Year(Day) = "
+             + "(CASE WHEN MONTH(" + s + ") > 3 THEN Year(" + s + ") ELSE "
+             + "Year(" + s + ") - 1 END)) p1 WHERE p.Day = (SELECT MIN(Day) "
+             + "FROM Prices WHERE Year(Day) = (CASE WHEN MONTH(" + s + ") > 3 "
+             + "THEN Year(" + s + ") ELSE Year(" + s + ") - 1 END) AND "
+             + "MONTH(Day) = (CASE WHEN MONTH(" + s + ") > 3 THEN "
+             + "MONTH(" + s + ") - 1 ELSE 12 END) AND Ticker = '" + ticker
+             + "') AND p1.Day = (SELECT MAX(Day) FROM Prices WHERE Year(Day) "
+             + "= (CASE WHEN MONTH(" + s + ") > 3 THEN Year(" + s + ") ELSE "
+             + "Year(" + s + ") - 1 END) AND MONTH(Day) = (CASE WHEN "
+             + "MONTH(" + s + ") > 3 THEN MONTH(" + s + ") - 1 ELSE 12 END) "
+             + "AND Ticker = '" + ticker + "')";
             ResultSet result = s3.executeQuery(query);
             boolean f = result.next();
             if (f)
