@@ -14,8 +14,8 @@ public class lab8 {
 	public static void main(String args[])
 	{
 
-		String user = "USERNAME";
-		String password = "PASSWORD";
+		String user = "glirios";
+		String password = "gio00124";
 		String url = "jdbc:mysql://cslvm74.csc.calpoly.edu/nyse";
 		String query = "";
 
@@ -25,7 +25,7 @@ public class lab8 {
 
 		// Giovanni's Personal Tickers
 		String tickerThree = "DG";
-		String tickerFour = "RSG"
+		String tickerFour = "RSG";
 
 		try
 		{
