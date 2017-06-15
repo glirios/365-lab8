@@ -43,3 +43,7 @@ If:
   "Buy" and price has increased more than 3%: True
   "Hold" and price has not increased or decreased more than 3%: True
   "Sell" and price has decreased more than 3%: True
+  
+ Inputs:
+ Single Ticker
+ A file that must have the extension of .txt
