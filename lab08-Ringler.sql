@@ -97,6 +97,7 @@ LIMIT 1;
 
 // Indiv Query 5
 // loop through the dates (have them as an array of strings)
+// Check for nulls
 // need to set the dates to the string array values, ticker to ticker
 SELECT (CASE WHEN p.Volume > p1.Volume AND (p1.Close / p.Open) >= 1.01 THEN "Buy"
 WHEN p1.Close > p.Open AND (p1.Close / p.Open) < 1.01 AND (p1.Close / p.Open) >= .95 THEN "Hold"
