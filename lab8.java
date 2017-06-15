@@ -518,11 +518,12 @@ public class lab8 {
       {
          bw.write("<!DOCTYPE html>\n");
          bw.write("<html>\n");
-         bw.write("<head><style>\ntable, th, td {\nborder: 1px solid black;" +
-            "\nborder-collapse: collapse;\n}\nth, td {\npadding: 5px;\n" +
-            "text-align: center;\n}\n</style><center>Stock Analysis for " +
-            ticker + "</center></head>\n");
-         bw.write("<body>\n");
+
+         bw.write("<head>\n\t<style>\n\t\ttable, \n\t\tth, \n\t\ttd {\n\t\t\tborder: 1px solid black;" +
+            "\n\t\t\tborder-collapse: collapse;\n\t\t}\n\t\tth, \n\t\ttd {\n\t\t\tpadding: 5px;\n\t\t\t" +
+            "text-align: center;\n\t\t}\n\t\t</style>\n\t\t<center>Stock Analysis for " +
+            ticker + "</center>\n</head>\n\n");
+         bw.write("<body>\n\n");
       }
       catch (Exception ex)
       {
@@ -536,7 +537,7 @@ public class lab8 {
    {
       try
       {
-         bw.write("</body>\n");
+         bw.write("</body>\n\n");
          bw.write("</html>");
          bw.close();
          fw.close();
