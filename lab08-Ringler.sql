@@ -64,3 +64,28 @@ FROM  Prices WHERE MONTH(Day) = 1 AND Year(Day) = 2016 GROUP BY Ticker) x1,
 FROM Prices WHERE MONTH(Day) = 12 AND Year(Day) = 2016 GROUP BY Ticker) x2
 WHERE x1.Ticker = x2.Ticker AND
 x.Ticker = x1.Ticker) y;
+
+
+
+// THIS IS INDIV QUERY 4
+// Needs to loop through the top SELECT Statement and set year(Day) = that year being looped through and also ticker = (ticker assigned)
+// query to loop through
+SELECT DISTINCT Year(Day) FROM Prices WHERE Ticker = "luv";
+
+SELECT MONTHNAME(p.Day) AS Month
+FROM
+(SELECT Day, Open FROM Prices WHERE Year(Day) = 2015 AND Ticker = "luv") p, (SELECT Day, Close FROM Prices WHERE Year(Day) = 2015 AND Ticker = "luv") p1
+WHERE p.Day IN (SELECT MIN(Day)
+FROM Prices
+WHERE Ticker = "luv" AND
+Year(Day) = 2015
+GROUP BY Month(Day)) AND
+p1.Day IN (SELECT MAX(Day)
+FROM Prices
+WHERE Ticker = "luv" AND
+Year(Day) = 2015
+GROUP BY Month(Day)) AND
+Month(p.Day) = Month(p1.Day)
+GROUP BY Month(p.Day)
+ORDER BY ((p1.Close - p.Open) / (p.Open)) DESC
+LIMIT 1;
