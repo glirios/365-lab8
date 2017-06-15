@@ -1,6 +1,11 @@
    public static void indivAnalysis()
    {
       String query = "";
+      String dates[] = new String[]{"'2015-1-1'", "'2015-6-1'", "'2015-10-1'",
+      "'2016-1-1'", "'2016-6-1'", "'2016-10-1'"};
+      float closers[] = new float[6];
+      String decisions[] = new String[6];
+      int i = 0;
       try
 		{
 			Statement s1 = conn.createStatement();
@@ -62,15 +67,15 @@
 
       try
       {
-         String dates[] = new String[]{"'2015-1-1'", "'2015-6-1'", "'2015-10-1'",
-          "'2016-1-1'", "'2016-6-1'", "'2016-10-1'"};
+
          Statement s3 = conn.createStatement();
          startTable();
          bw.write("<caption>Position analysis on stock for following dates"
           + "</caption>\n<tr>\n<th>Date</th><th>Position</th></tr>\n");
+         i = 0;
          for (String s : dates)
          {
-            query = "SELECT (CASE WHEN p.Volume > p1.Volume AND "
+            query = "SELECT p1.Close, (CASE WHEN p.Volume > p1.Volume AND "
              + "(p1.Close / p.Open) >= 1.01 THEN 'Buy' "
              + "WHEN p1.Close > p.Open AND (p1.Close / p.Open) < 1.01 AND "
              + "(p1.Close / p.Open) >= .95 THEN 'Hold' "
@@ -92,7 +97,10 @@
             {
                while (f)
                {
-                  String position = result.getString(1);
+                  float cl = result.getFloat(1);
+                  closers[i] = cl;
+                  String position = result.getString(2);
+                  decisions[i++] = position;
                   bw.write("<tr>\n<td>" + s + "</td>\n<td>" + position
                    + "</td></tr>");
                   f = result.next();
@@ -105,6 +113,72 @@
       {
          System.out.println("Could not obtain the Individual Stock Market "
                + "Analysis #5");
+         System.out.println(ex);
+      }
+
+      try
+      {
+         Statement s7 = conn.createStatement();
+         i = 0;
+         startTable();
+         bw.write("<caption>Position Accuracy on stock for following dates"
+          + "</caption>\n<tr>\n<th>Date</th><th>Accurate</th></tr>\n");
+         for (String s : dates)
+         {
+            query = "SELECT Open, Volume FROM Prices "
+             + "WHERE MONTH(Day) = (CASE WHEN MONTH(" + s + ") < 10 THEN "
+             + "MONTH(" + s + ") + 3 ELSE 12 END) AND "
+             + "YEAR(Day) = YEAR(" + s + ") "
+             + "AND Ticker = '" + ticker + "' ORDER BY Day DESC LIMIT 1";
+            ResultSet result = s7.executeQuery(query);
+            boolean f = result.next();
+            if (f)
+            {
+               while(f)
+               {
+                  float openVal = result.getFloat(1);
+                  long volume = result.getLong(2);
+                  String decision = "False";
+                  float value = openVal / closers[i];
+                  if ("Buy".equals(decisions[i]))
+                  {
+                     if (value > 1.03)
+                     {
+                        decision = "True";
+                     }
+                  }
+                  else if ("Hold".equals(decisions[i]))
+                  {
+                     if (value < 1.03 && value > .97)
+                     {
+                        decision = "True";
+                     }
+                  }
+                  else
+                  {
+                     if (value < .97)
+                     {
+                        decision = "True";
+                     }
+                  }
+                  bw.write("<tr>\n<td>" + s + "</td>\n<td>" +
+                   decision + "</td>\n</tr>\n");
+                  f = result.next();
+                  i++;
+               }
+            }
+            else
+            {
+               bw.write("<tr>\n<td>" + s + "</td>\n<td>" +
+                "No Data Available To Analyze Future");
+            }
+         }
+         endTable();
+      }
+      catch (Exception ex)
+      {
+         System.out.println("Could not obtain the Individual Stock Market "
+               + "Analysis #6");
          System.out.println(ex);
       }
 
