@@ -486,8 +486,8 @@ public class lab8 {
          bw.write("<caption>Date Ranges for " + ticker + " </caption>\n<tr>\n<th>Total</th>\n</tr>\n");
 			while (f)
 			{
-				int total = result.getString(1);
-				bw.write("<tr>\n<td>" + total + "</td>\n</tr>\n");
+				String line = result.getString(1);
+				bw.write("<tr>\n<td>" + line + "</td>\n</tr>\n");
 				//System.out.println(total);
             f = result.next();
 			}
