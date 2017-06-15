@@ -3,7 +3,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class my8 {
+public class my8 {fsdakfjalsk; fafjkl a
 
    static Connection conn = null;
    static String filename = "general.html";
@@ -20,7 +20,7 @@ public class my8 {
 		String query = "";
 
 		// Kyle's Personal Tickers
-		String tickerOne = "LUV";
+		String tickerOne = "\"LUV\"";
 		String tickerTwo = "LNC";
 
 		// Giovanni's Personal Tickers
@@ -478,16 +478,16 @@ public class my8 {
 		try
 		{
 			Statement s1 = conn.createStatement();
-			query = "SELECT ticker, MIN(day), MAX(day)"
-					+ "FROM Prices"
-					+ "WHERE ticker = " + ticker;
+			query = "SELECT ticker, MIN(day), MAX(day) "
+					+ "FROM Prices "
+					+ "WHERE ticker = \"LUV\"";
 			ResultSet result = s1.executeQuery(query);
 			boolean f = result.next();
          startTable();
          bw.write("<caption>Date Ranges for " + ticker + " </caption>\n<tr>\n<th>Total</th>\n</tr>\n");
 			while (f)
 			{
-				int total = result.getInt(1);
+				int total = result.getString(1);
 				bw.write("<tr>\n<td>" + total + "</td>\n</tr>\n");
 				//System.out.println(total);
             f = result.next();

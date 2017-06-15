@@ -113,6 +113,7 @@ public class lab8 {
 		// Query 1 Part 1
 		try
 		{
+			lineBreak();
 			Statement s1 = conn.createStatement();
 			query = "SELECT COUNT(*) FROM Prices WHERE Day = "
 					+ "(SELECT MIN(Day) FROM Prices WHERE Year(Day) = 2016 "
@@ -120,12 +121,12 @@ public class lab8 {
 			ResultSet result = s1.executeQuery(query);
 			boolean f = result.next();
          startTable();
-         bw.write("<caption>Total number of securities traded at the "
-            + "start of 2016</caption>\n<tr>\n<th>Total</th>\n</tr>\n");
+         bw.write("\n\n\t\t<caption>Total number of securities traded at the "
+            + "start of 2016</caption>\n\t\t<tr>\n\t\t\t<th>Total</th>\n\t\t</tr>\n");
 			while (f)
 			{
 				int total = result.getInt(1);
-				bw.write("<tr>\n<td>" + total + "</td>\n</tr>\n");
+				bw.write("\t\t<tr>\n\t\t\t<td>" + total + "</td>\n\t\t</tr>\n");
 				//System.out.println(total);
             f = result.next();
 			}
@@ -141,6 +142,7 @@ public class lab8 {
 		// Query 1 Part 2
 		try
 		{
+			lineBreak();
 			Statement s2 = conn.createStatement();
 			query = "SELECT COUNT(*) FROM Prices WHERE Day = "
 					+ "(SELECT MAX(Day) FROM Prices WHERE Year(Day) = 2016 "
@@ -148,12 +150,12 @@ public class lab8 {
 			ResultSet result = s2.executeQuery(query);
 			boolean f = result.next();
          startTable();
-         bw.write("<caption>Total number of securities traded at the "
-            + "end of 2016</caption>\n<tr>\n<th>Total</th>\n</tr>\n");
+         bw.write("\t\t<caption>Total number of securities traded at the "
+            + "end of 2016</caption>\n\t\t<tr>\n\t\t\t<th>Total</th>\n\t\t</tr>\n");
 			while (f)
 			{
 				int total = result.getInt(1);
-				bw.write("<tr>\n<td>" + total + "</td>\n</tr>\n");
+				bw.write("\t\t<tr>\n\t\t\t<td>" + total + "</td>\n\t\t</tr>\n");
 				//System.out.println(total);
             f = result.next();
 			}
@@ -169,6 +171,7 @@ public class lab8 {
 		// Query 1 Part 3
 		try
 		{
+			lineBreak();
 			Statement s3 = conn.createStatement();
 			query = "SELECT COUNT(*) FROM "
 					+ "(SELECT * FROM AdjustedPrices WHERE Day = "
@@ -181,13 +184,13 @@ public class lab8 {
 			ResultSet result = s3.executeQuery(query);
 			boolean f = result.next();
          startTable();
-         bw.write("<caption>Total number of securities whose prices saw "
+         bw.write("\t\t<caption>Total number of securities whose prices saw "
             + "an increase from end of 2015 to end of 2016</caption>\n"
-            + "<tr>\n<th>Total</th>\n</tr>\n");
+            + "\t\t<tr>\n\t\t\t<th>Total</th>\n\t\t</tr>\n");
 			while (f)
 			{
 				int total = result.getInt(1);
-				bw.write("<tr>\n<td>" + total + "</td>\n</tr>\n");
+				bw.write("\t\t<tr>\n\t\t\t<td>" + total + "</td>\n\t\t</tr>\n");
 				//System.out.println(total);
             f = result.next();
 			}
@@ -203,6 +206,7 @@ public class lab8 {
 		// Query 1 Part 4
 		try
 		{
+			lineBreak();
 			Statement s4 = conn.createStatement();
 			query = "SELECT COUNT(*) FROM "
 					+ "(SELECT * FROM AdjustedPrices WHERE Day = "
@@ -215,13 +219,13 @@ public class lab8 {
 			ResultSet result = s4.executeQuery(query);
 			boolean f = result.next();
          startTable();
-         bw.write("<caption>Total number of securities whose prices saw "
+         bw.write("\t\t<caption>Total number of securities whose prices saw "
             + "a decrease from end of 2015 to end of 2016</caption>\n"
-            + "<tr>\n<th>Total</th>\n</tr>\n");
+            + "\t\t<tr>\n\t\t\t<th>Total</th>\n\t\t</tr>\n");
 			while (f)
 			{
 				int total = result.getInt(1);
-            bw.write("<tr>\n<td>" + total + "</td>\n</tr>\n");
+            bw.write("\t\t<tr>\n\t\t\t<td>" + total + "</td>\n\t\t</tr>\n");
 				//System.out.println(total);
             f = result.next();
 			}
@@ -238,18 +242,19 @@ public class lab8 {
 		// Query 2
 		try
 		{
+			lineBreak();
 			Statement s5 = conn.createStatement();
 			query = "SELECT Ticker FROM Prices WHERE Year(Day) = 2016"
 					+ " GROUP BY Ticker ORDER BY (Volume) DESC LIMIT 10";
 			ResultSet result = s5.executeQuery(query);
 			boolean f = result.next();
          startTable();
-         bw.write("<caption>Top 10 stocks that were most heavily traded"
-            + "</caption>\n<tr>\n<th>Tickers</th>\n</tr>\n");
+         bw.write("\t\t<caption>Top 10 stocks that were most heavily traded"
+            + "</caption>\n\t\t<tr>\n\t\t\t<th>Tickers</th>\n\t\t</tr>\n");
 			while (f)
 			{
 				String s = result.getString(1);
-				bw.write("<tr>\n<td>" + s + "</td>\n</tr>\n");
+				bw.write("\t\t<tr>\n\t\t\t<td>" + s + "</td>\n\t\t</tr>\n");
 				f = result.next();
 			}
          endTable();
@@ -264,6 +269,7 @@ public class lab8 {
 		// Query 3
 		try
 		{
+			lineBreak();
 			Statement s6 = conn.createStatement();
 			query = "SELECT DISTINCT YEAR(Day) FROM Prices";
          int years[] = new int[7];
@@ -273,9 +279,9 @@ public class lab8 {
 			ResultSet result = s6.executeQuery(query);
 			boolean f = result.next();
          startTable();
-         bw.write("<caption>Top 5 highest performing stocks for both "
-            + "absolute and relative price increase</caption>\n<tr>\n"
-            + "<th>Year</th><th>Absolute</th><th>Relative</th></tr>\n");
+         bw.write("\t\t<caption>Top 5 highest performing stocks for both "
+            + "absolute and relative price increase</caption>\n\t\t<tr>\n"
+            + "\t\t\t<th>Year</th>\n\t\t\t<th>Absolute</th>\n\t\t\t<th>Relative</th>\n\t\t</tr>\n");
 			while(f)
 			{
 				int year = result.getInt(1);
@@ -335,11 +341,11 @@ public class lab8 {
 							+ "for year " + year);
 					System.out.println(ex);
 				}
-            bw.write("<tr><td rowspan=\"6\">" + year + "</td></tr>\n");
+            bw.write("\t\t<tr>\n\t\t\t<td rowspan=\"6\">" + year + "</td>\n\t\t</tr>\n");
             for (i = 0; i < 5; i++)
             {
-               bw.write("<tr><td>" + absolute[i] + "</td>\n");
-               bw.write("<td>" + relative[i] + "</td>\n</tr>\n");
+               bw.write("\t\t<tr>\n\t\t\t<td>" + absolute[i] + "</td>\n");
+               bw.write("\t\t\t<td>" + relative[i] + "</td>\n\t\t</tr>\n");
             }
 				f = result.next();
 			}
@@ -355,6 +361,7 @@ public class lab8 {
 		// Query 4
 		try
 		{
+			lineBreak();
 			Statement s9 = conn.createStatement();
 			query = "SELECT x.Ticker FROM "
 					+ "(SELECT Ticker, AVG(Close) AS Avg FROM Prices WHERE "
@@ -368,15 +375,16 @@ public class lab8 {
 			ResultSet result = s9.executeQuery(query);
 			boolean f = result.next();
          startTable();
-         bw.write("<caption>10 stocks to watch</caption>\n<tr>\n"
-            + "<th>Ticker</th></tr>\n");
+         bw.write("\t\t<caption>10 stocks to watch</caption>\n\t\t<tr>\n"
+            + "\t\t\t<th>Ticker</th>\n\t\t</tr>\n");
 			System.out.println("10 Stocks to watch");
 			while (f)
 			{
 				String s = result.getString(1);
-            bw.write("<tr>\n<td>" + s + "</td>\n</tr>\n");
+            bw.write("\t\t<tr>\n\t\t\t<td>" + s + "</td>\n\t\t</tr>\n");
 				f = result.next();
 			}
+		 endTable();
 		}
 		catch (Exception ex)
 		{
@@ -388,14 +396,15 @@ public class lab8 {
 		// Query 5
 		try
 		{
+			lineBreak();
 			Statement s10 = conn.createStatement();
 			query = "SELECT DISTINCT Sector FROM Securities";
 			ResultSet result = s10.executeQuery(query);
 			boolean f = result.next();
 			//System.out.println("Assessments for different sectors");
          startTable();
-         bw.write("<caption>Assessments of different sectors</caption>\n<tr>\n"
-            + "<th>Sector</th><th>Assessment</th></tr>\n");
+         bw.write("\t\t<caption>Assessments of different sectors</caption>\n\t\t<tr>\n"
+            + "\t\t\t<th>Sector</th>\n\t\t\t<th>Assessment</th>\n\t\t</tr>\n");
 			while (f)
 			{
 				String sector = result.getString(1);
@@ -447,8 +456,8 @@ public class lab8 {
 							}
 							f1 = result1.next();
 						}
-                  bw.write("<tr>\n<td>" + sector + "</td>\n<td>" + rank
-                   + "</td></tr>\n");
+                  bw.write("\t\t<tr>\n\t\t\t<td>" + sector + "</td>\n\t\t\t<td>" + rank
+                   + "</td>\n\t\t</tr>\n");
 					}
 					catch (Exception ex)
 					{
@@ -459,6 +468,7 @@ public class lab8 {
 				}
 				f = result.next();
 			}
+		 endTable();
 		}
 		catch (Exception ex)
 		{
@@ -554,7 +564,7 @@ public class lab8 {
    {
       try
       {
-         bw.write("<table style=\"width:100%\">\n");
+         bw.write("\t<table style=\"width:100%\">\n");
       }
       catch (Exception ex)
       {
@@ -567,11 +577,25 @@ public class lab8 {
    {
       try
       {
-         bw.write("</table>\n");
+         bw.write("\t</table>\n\n");
       }
       catch (Exception ex)
       {
          System.out.println("Failed to close table");
+         System.out.println(ex);
+      }
+   }
+
+   public static void lineBreak()
+   {
+   		try
+   		{
+   			bw.write("\t<br><br>\n");
+
+   		}
+   		catch (Exception ex)
+      {
+         System.out.println("Failed to add new lines");
          System.out.println(ex);
       }
    }

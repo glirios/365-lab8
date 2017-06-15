@@ -1,272 +1,370 @@
 <!DOCTYPE html>
 <html>
-<head><style>
-table, th, td {
-border: 1px solid black;
-border-collapse: collapse;
-}
-th, td {
-padding: 5px;
-text-align: center;
-}
-</style><center>Stock Analysis for General</center></head>
+
+<head>
+	<style>
+		table, 
+		th, 
+		td {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		th, 
+		td {
+			padding: 5px;
+			text-align: center;
+		}
+
+	</style>
+
+	<center>Stock Analysis for General</center>
+</head>
+
 <body>
-<table style="width:100%">
-<caption>Total number of securities traded at the start of 2016</caption>
-<tr>
-<th>Total</th>
-</tr>
-<tr>
-<td>499</td>
-</tr>
-</table>
-<table style="width:100%">
-<caption>Total number of securities traded at the end of 2016</caption>
-<tr>
-<th>Total</th>
-</tr>
-<tr>
-<td>501</td>
-</tr>
-</table>
-<table style="width:100%">
-<caption>Total number of securities whose prices saw an increase from end of 2015 to end of 2016</caption>
-<tr>
-<th>Total</th>
-</tr>
-<tr>
-<td>366</td>
-</tr>
-</table>
-<table style="width:100%">
-<caption>Total number of securities whose prices saw a decrease from end of 2015 to end of 2016</caption>
-<tr>
-<th>Total</th>
-</tr>
-<tr>
-<td>133</td>
-</tr>
-</table>
-<table style="width:100%">
-<caption>Top 10 stocks that were most heavily traded</caption>
-<tr>
-<th>Tickers</th>
-</tr>
-<tr>
-<td>BAC</td>
-</tr>
-<tr>
-<td>AAPL</td>
-</tr>
-<tr>
-<td>GE</td>
-</tr>
-<tr>
-<td>MSFT</td>
-</tr>
-<tr>
-<td>FCX</td>
-</tr>
-<tr>
-<td>F</td>
-</tr>
-<tr>
-<td>CHK</td>
-</tr>
-<tr>
-<td>FB</td>
-</tr>
-<tr>
-<td>PFE</td>
-</tr>
-<tr>
-<td>CSCO</td>
-</tr>
-</table>
-<table style="width:100%">
-<caption>Top 5 highest performing stocks for both absolute and relative price increase</caption>
-<tr>
-<th>Year</th><th>Absolute</th><th>Relative</th></tr>
-<tr><td rowspan="6">2010</td></tr>
-<tr><td>GOOG</td>
-<td>ETFC</td>
-</tr>
-<tr><td>GOOGL</td>
-<td>NFLX</td>
-</tr>
-<tr><td>BLK</td>
-<td>CMG</td>
-</tr>
-<tr><td>CME</td>
-<td>FFIV</td>
-</tr>
-<tr><td>AIG</td>
-<td>CMI</td>
-</tr>
-<tr><td rowspan="6">2011</td></tr>
-<tr><td>GOOG</td>
-<td>LVLT</td>
-</tr>
-<tr><td>GOOGL</td>
-<td>C</td>
-</tr>
-<tr><td>ISRG</td>
-<td>MSI</td>
-</tr>
-<tr><td>AAPL</td>
-<td>COG</td>
-</tr>
-<tr><td>CMG</td>
-<td>ULTA</td>
-</tr>
-<tr><td rowspan="6">2012</td></tr>
-<tr><td>CMG</td>
-<td>REGN</td>
-</tr>
-<tr><td>EQIX</td>
-<td>DUK</td>
-</tr>
-<tr><td>NFLX</td>
-<td>PHM</td>
-</tr>
-<tr><td>PPG</td>
-<td>AAL</td>
-</tr>
-<tr><td>GOOG</td>
-<td>WHR</td>
-</tr>
-<tr><td rowspan="6">2013</td></tr>
-<tr><td>MA</td>
-<td>NFLX</td>
-</tr>
-<tr><td>GOOG</td>
-<td>BBY</td>
-</tr>
-<tr><td>GOOGL</td>
-<td>MU</td>
-</tr>
-<tr><td>WYNN</td>
-<td>ENDP</td>
-</tr>
-<tr><td>ADS</td>
-<td>DAL</td>
-</tr>
-<tr><td rowspan="6">2014</td></tr>
-<tr><td>AZO</td>
-<td>SWKS</td>
-</tr>
-<tr><td>BIIB</td>
-<td>LUV</td>
-</tr>
-<tr><td>CMG</td>
-<td>AAL</td>
-</tr>
-<tr><td>SHW</td>
-<td>EA</td>
-</tr>
-<tr><td>ISRG</td>
-<td>EW</td>
-</tr>
-<tr><td rowspan="6">2015</td></tr>
-<tr><td>ISRG</td>
-<td>AMZN</td>
-</tr>
-<tr><td>ULTA</td>
-<td>ATVI</td>
-</tr>
-<tr><td>BIIB</td>
-<td>AYI</td>
-</tr>
-<tr><td>AVGO</td>
-<td>NVDA</td>
-</tr>
-<tr><td>ALXN</td>
-<td>HRL</td>
-</tr>
-<tr><td rowspan="6">2016</td></tr>
-<tr><td>EVHC</td>
-<td>NVDA</td>
-</tr>
-<tr><td>GOOGL</td>
-<td>EVHC</td>
-</tr>
-<tr><td>EQIX</td>
-<td>OKE</td>
-</tr>
-<tr><td>GOOG</td>
-<td>FCX</td>
-</tr>
-<tr><td>ESS</td>
-<td>ARNC</td>
-</tr>
-</table>
-<table style="width:100%">
-<caption>10 stocks to watch</caption>
-<tr>
-<th>Ticker</th></tr>
-<tr>
-<td>NVDA</td>
-</tr>
-<tr>
-<td>FCX</td>
-</tr>
-<tr>
-<td>EVHC</td>
-</tr>
-<tr>
-<td>ARNC</td>
-</tr>
-<tr>
-<td>OKE</td>
-</tr>
-<tr>
-<td>CHK</td>
-</tr>
-<tr>
-<td>MRO</td>
-</tr>
-<tr>
-<td>AMAT</td>
-</tr>
-<tr>
-<td>PWR</td>
-</tr>
-<tr>
-<td>APC</td>
-</tr>
-<table style="width:100%">
-<caption>Assessments of different sectors</caption>
-<tr>
-<th>Sector</th><th>Assessment</th></tr>
-<tr>
-<td>Health Care</td>
-<td>Showing resilience</td></tr>
-<tr>
-<td>Industrials</td>
-<td>Significantly outperforming</td></tr>
-<tr>
-<td>Consumer Discretionary</td>
-<td>Secure</td></tr>
-<tr>
-<td>Information Technology</td>
-<td>Significantly outperforming</td></tr>
-<tr>
-<td>Consumer Staples</td>
-<td>Unsafe</td></tr>
-<tr>
-<td>Utilities</td>
-<td>Secure</td></tr>
-<tr>
-<td>Financials</td>
-<td>Significantly outperforming</td></tr>
-<tr>
-<td>Real Estate</td>
-<td>Stationary</td></tr>
-<tr>
-<td>Materials</td>
-<td>Significantly outperforming</td></tr>
-<tr>
-<td>Energy</td>
-<td>Significantly outperforming</td></tr>
+
+	<br><br>
+	<table style="width:100%">
+
+
+		<caption>Total number of securities traded at the start of 2016</caption>
+		<tr>
+			<th>Total</th>
+		</tr>
+		<tr>
+			<td>499</td>
+		</tr>
+	</table>
+
+	<br><br>
+	<table style="width:100%">
+		<caption>Total number of securities traded at the end of 2016</caption>
+		<tr>
+			<th>Total</th>
+		</tr>
+		<tr>
+			<td>501</td>
+		</tr>
+	</table>
+
+	<br><br>
+	<table style="width:100%">
+		<caption>Total number of securities whose prices saw an increase from end of 2015 to end of 2016</caption>
+		<tr>
+			<th>Total</th>
+		</tr>
+		<tr>
+			<td>366</td>
+		</tr>
+	</table>
+
+	<br><br>
+	<table style="width:100%">
+		<caption>Total number of securities whose prices saw a decrease from end of 2015 to end of 2016</caption>
+		<tr>
+			<th>Total</th>
+		</tr>
+		<tr>
+			<td>133</td>
+		</tr>
+	</table>
+
+	<br><br>
+	<table style="width:100%">
+		<caption>Top 10 stocks that were most heavily traded</caption>
+		<tr>
+			<th>Tickers</th>
+		</tr>
+		<tr>
+			<td>BAC</td>
+		</tr>
+		<tr>
+			<td>AAPL</td>
+		</tr>
+		<tr>
+			<td>GE</td>
+		</tr>
+		<tr>
+			<td>MSFT</td>
+		</tr>
+		<tr>
+			<td>FCX</td>
+		</tr>
+		<tr>
+			<td>F</td>
+		</tr>
+		<tr>
+			<td>CHK</td>
+		</tr>
+		<tr>
+			<td>FB</td>
+		</tr>
+		<tr>
+			<td>PFE</td>
+		</tr>
+		<tr>
+			<td>CSCO</td>
+		</tr>
+	</table>
+
+	<br><br>
+	<table style="width:100%">
+		<caption>Top 5 highest performing stocks for both absolute and relative price increase</caption>
+		<tr>
+			<th>Year</th>
+			<th>Absolute</th>
+			<th>Relative</th>
+		</tr>
+		<tr>
+			<td rowspan="6">2010</td>
+		</tr>
+		<tr>
+			<td>GOOG</td>
+			<td>ETFC</td>
+		</tr>
+		<tr>
+			<td>GOOGL</td>
+			<td>NFLX</td>
+		</tr>
+		<tr>
+			<td>BLK</td>
+			<td>CMG</td>
+		</tr>
+		<tr>
+			<td>CME</td>
+			<td>FFIV</td>
+		</tr>
+		<tr>
+			<td>AIG</td>
+			<td>CMI</td>
+		</tr>
+		<tr>
+			<td rowspan="6">2011</td>
+		</tr>
+		<tr>
+			<td>GOOG</td>
+			<td>LVLT</td>
+		</tr>
+		<tr>
+			<td>GOOGL</td>
+			<td>C</td>
+		</tr>
+		<tr>
+			<td>ISRG</td>
+			<td>MSI</td>
+		</tr>
+		<tr>
+			<td>AAPL</td>
+			<td>COG</td>
+		</tr>
+		<tr>
+			<td>CMG</td>
+			<td>ULTA</td>
+		</tr>
+		<tr>
+			<td rowspan="6">2012</td>
+		</tr>
+		<tr>
+			<td>CMG</td>
+			<td>REGN</td>
+		</tr>
+		<tr>
+			<td>EQIX</td>
+			<td>DUK</td>
+		</tr>
+		<tr>
+			<td>NFLX</td>
+			<td>PHM</td>
+		</tr>
+		<tr>
+			<td>PPG</td>
+			<td>AAL</td>
+		</tr>
+		<tr>
+			<td>GOOG</td>
+			<td>WHR</td>
+		</tr>
+		<tr>
+			<td rowspan="6">2013</td>
+		</tr>
+		<tr>
+			<td>MA</td>
+			<td>NFLX</td>
+		</tr>
+		<tr>
+			<td>GOOG</td>
+			<td>BBY</td>
+		</tr>
+		<tr>
+			<td>GOOGL</td>
+			<td>MU</td>
+		</tr>
+		<tr>
+			<td>WYNN</td>
+			<td>ENDP</td>
+		</tr>
+		<tr>
+			<td>ADS</td>
+			<td>DAL</td>
+		</tr>
+		<tr>
+			<td rowspan="6">2014</td>
+		</tr>
+		<tr>
+			<td>AZO</td>
+			<td>SWKS</td>
+		</tr>
+		<tr>
+			<td>BIIB</td>
+			<td>LUV</td>
+		</tr>
+		<tr>
+			<td>CMG</td>
+			<td>AAL</td>
+		</tr>
+		<tr>
+			<td>SHW</td>
+			<td>EA</td>
+		</tr>
+		<tr>
+			<td>ISRG</td>
+			<td>EW</td>
+		</tr>
+		<tr>
+			<td rowspan="6">2015</td>
+		</tr>
+		<tr>
+			<td>ISRG</td>
+			<td>AMZN</td>
+		</tr>
+		<tr>
+			<td>ULTA</td>
+			<td>ATVI</td>
+		</tr>
+		<tr>
+			<td>BIIB</td>
+			<td>AYI</td>
+		</tr>
+		<tr>
+			<td>AVGO</td>
+			<td>NVDA</td>
+		</tr>
+		<tr>
+			<td>ALXN</td>
+			<td>HRL</td>
+		</tr>
+		<tr>
+			<td rowspan="6">2016</td>
+		</tr>
+		<tr>
+			<td>EVHC</td>
+			<td>NVDA</td>
+		</tr>
+		<tr>
+			<td>GOOGL</td>
+			<td>EVHC</td>
+		</tr>
+		<tr>
+			<td>EQIX</td>
+			<td>OKE</td>
+		</tr>
+		<tr>
+			<td>GOOG</td>
+			<td>FCX</td>
+		</tr>
+		<tr>
+			<td>ESS</td>
+			<td>ARNC</td>
+		</tr>
+	</table>
+
+	<br><br>
+	<table style="width:100%">
+		<caption>10 stocks to watch</caption>
+		<tr>
+			<th>Ticker</th>
+		</tr>
+		<tr>
+			<td>NVDA</td>
+		</tr>
+		<tr>
+			<td>FCX</td>
+		</tr>
+		<tr>
+			<td>EVHC</td>
+		</tr>
+		<tr>
+			<td>ARNC</td>
+		</tr>
+		<tr>
+			<td>OKE</td>
+		</tr>
+		<tr>
+			<td>CHK</td>
+		</tr>
+		<tr>
+			<td>MRO</td>
+		</tr>
+		<tr>
+			<td>AMAT</td>
+		</tr>
+		<tr>
+			<td>PWR</td>
+		</tr>
+		<tr>
+			<td>APC</td>
+		</tr>
+	</table>
+
+	<br><br>
+	<table style="width:100%">
+		<caption>Assessments of different sectors</caption>
+		<tr>
+			<th>Sector</th>
+			<th>Assessment</th>
+		</tr>
+		<tr>
+			<td>Health Care</td>
+			<td>Showing resilience</td>
+		</tr>
+		<tr>
+			<td>Industrials</td>
+			<td>Significantly outperforming</td>
+		</tr>
+		<tr>
+			<td>Consumer Discretionary</td>
+			<td>Secure</td>
+		</tr>
+		<tr>
+			<td>Information Technology</td>
+			<td>Significantly outperforming</td>
+		</tr>
+		<tr>
+			<td>Consumer Staples</td>
+			<td>Unsafe</td>
+		</tr>
+		<tr>
+			<td>Utilities</td>
+			<td>Secure</td>
+		</tr>
+		<tr>
+			<td>Financials</td>
+			<td>Significantly outperforming</td>
+		</tr>
+		<tr>
+			<td>Real Estate</td>
+			<td>Stationary</td>
+		</tr>
+		<tr>
+			<td>Materials</td>
+			<td>Significantly outperforming</td>
+		</tr>
+		<tr>
+			<td>Energy</td>
+			<td>Significantly outperforming</td>
+		</tr>
+	</table>
+
 </body>
+
 </html>
