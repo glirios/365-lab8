@@ -1,0 +1,45 @@
+Kyle Ringler
+kringler@calpoly.edu
+
+Giovanni Lirios
+glirios@calpoly.edu
+
+Provide a command line argument of either a single ticker or a file of tickers.
+
+Methodology:
+
+General #4:
+The 10 stocks that were selected had the highest relative price increase
+from the average close price of the first month of the year
+to the average close price of the last month of the year.
+
+General #5:
+Took the relative price increase from the average close of the first month
+of the year to the average close price of the last month of the year.
+If this value was
+  <.02: Unsafe
+  <.05: Stationary
+  <.10: SHowing resilience
+  <.25: Secure
+  >.25: Significantly outperforming
+  
+Individual #4:
+Took the highest relative price increase from beginning of
+each month to end of each month. Highest relative price increase
+was considered the best month.
+
+Individual #5:
+Took the relative price increase of the first day of the month prior 
+to the last day of the month prior. If:
+  The volume on the last day is less than first day and if the price
+  has gone up more than 1%: Buy.
+  The price has not increased more than 1% and decreased less
+  than 5%: Hold.
+  If the price has decreased more than 5%: Sell.
+
+Individual #6:
+Took the Open and volume from the last day of the month 2-3 months ahead of time.
+If:
+  "Buy" and price has increased more than 3%: True
+  "Hold" and price has not increased or decreased more than 3%: True
+  "Sell" and price has decreased more than 3%: True
